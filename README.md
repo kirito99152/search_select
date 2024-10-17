@@ -1,7 +1,11 @@
 Tác giả: Cao Thanh Phong.
-Đơn vị: PSA
+
+Đơn vị: PSA.
+
 Chức năng: công cụ thêm search cho phần search box cho select.
+
 Yêu cầu: Phải cài đặt bootstrap 5 (https://getbootstrap.com/docs/5.0/getting-started/download/)
+
 Hướng dẫn:
 -  Khởi tạo:
 ```js
