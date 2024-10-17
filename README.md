@@ -16,9 +16,9 @@ Cách cài đặt:
 <script src="yourpath/search_select.js"></script>
 ```
 Hướng dẫn:
--  Khởi tạo truyền cho class id của form muốn tạo search box:
+-  Khởi tạo:
 ```js
-let select = new search_select("<your_form_id>")
+let select = new search_select("<your_form_id>")//your_form_id là id của form muốn thêm search box
 ```
 -  Set class cho input, mặc định là "form-control":
 ```js
