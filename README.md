@@ -6,6 +6,15 @@ Chức năng: công cụ thêm search cho phần search box cho select.
 
 Yêu cầu: Phải cài đặt bootstrap 5 (https://getbootstrap.com/docs/5.0/getting-started/download/)
 
+Cách cài đặt:
+-  CDN:
+```html
+<script src="https://cdn.jsdelivr.net/gh/kirito99152/search_select@main/search_select.js"></script>
+```
+-  Cài đặt trực tiếp file search_select vào folder:
+```html
+<script src="yourpath/search_select.js"></script>
+```
 Hướng dẫn:
 -  Khởi tạo:
 ```js
