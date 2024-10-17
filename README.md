@@ -21,6 +21,12 @@ Hướng dẫn:
 ```js
 let select = new search_select("<your_form_id>")//your_form_id là id của form muốn thêm search box
 ```
+-  Bắt đầu khởi tạo search box:
+```js
+//run() phải được thực hiện sau cùng
+//tức là select.msg hay thuộc tính khác nếu muốn tùy chỉnh phải được chỉnh trước khi run() được thực hiện
+select.run()
+```
 -  Set class cho input, mặc định là "form-control":
 ```js
 select.input_class =  "<your_class>"
