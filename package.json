@@ -1,6 +1,6 @@
 {
-  name: "search_select",
-  version: "1.0.0",
-  author: "PSA_CTPhong",
-  main: "search_select.js"
+  "name": "search_select",
+  "version": "1.0.0",
+  "author": "PSA_CTPhong",
+  "main": "search_select.js"
 }
