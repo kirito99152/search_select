@@ -2,6 +2,7 @@ class search_select {
     msg = "{0} Không hợp lệ";
     input_class = "form-control";
     validate_class = "text-danger";
+    IsNULL = false;
     constructor(formid) {
         this.formid = formid;
     }
@@ -19,23 +20,32 @@ class search_select {
         }
         //Xử lý
         for (let i = 0; i < select.length; ++i) {
+            if (select[i].id == null) continue;
             select[i].hidden = true;
+            if (this.IsNULL) { //NULL option
+                let opt = document.createElement("option");
+                select[i].insertBefore(opt, select[i].firstElementChild);
+                select[i].selectedIndex = 0;
+            }
             //Khởi tạo các giá trị cần thiết
             let cr = {}; //Giá trị của select hiện tại
             let idlist = "datalist" + i.toString(); //Id của datalist
             let input = document.createElement("input");
             let datalist = document.createElement("datalist");
             let options = select[i].options; 
-            let validate = document.createElement("span"); //Tạo text box cho validator
             //Cài đặt input
             input.placeholder = "Nhập để tìm kiếm...";
             input.className = `search-input ${this.input_class}`;
             input.setAttribute("list", idlist);
+            input.setAttribute("formid", this.formid);
             input.setAttribute("selid", select[i].id);
             input.setAttribute("label", label[select[i].id]);
+            input.setAttribute("msg", this.msg);
             input.value = select[i].options[select[i].selectedIndex].text; //Lấy giá trị hiện tại
             input.addEventListener("change", function (e) { //Thêm event cho input
+                let formid = e.target.getAttribute("formid");
                 let selid = e.target.getAttribute("selid");
+                let msg = e.target.getAttribute("msg");
                 let label = e.target.getAttribute("label");
                 let validate = document.getElementById("Validate_" + selid);
                 let value = e.target.value;
@@ -45,7 +55,10 @@ class search_select {
                     document.getElementById(selid).selectedIndex = data[selid][value];
                     validate.innerHTML = "";
                 } else {
-                    validate.innerHTML = validate.getAttribute("msg").replace("{0}", label);
+                    var validator = $(`#${formid}`).validate();
+                    var obj = {}; //Nhập sai
+                    obj[selid] = msg.replace("{0}", label); //Xây dựng obj in lỗi ra
+                    validator.showErrors(obj);
                 }
             });
             //Xử lý datalist
@@ -58,12 +71,8 @@ class search_select {
             }
             datalist.id = idlist;
             data[select[i].id] = cr;
-            //Xử lý validator
-            validate.className = `${this.validate_class}`;
-            validate.id = "Validate_" + select[i].id;
-            validate.setAttribute("msg", this.msg);
             //Thêm vào form
-            select[i].after(input, datalist, validate);
+            select[i].after(input, datalist);
         }
         //Xử lý sự kiện submit
         document.getElementById("form").addEventListener("submit", function(e) {
