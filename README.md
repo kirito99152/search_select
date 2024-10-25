@@ -39,3 +39,7 @@ select.validate_class =  "<your_class>"
 ```js
 select.msg = "<your_msg>" //{0} đại diện cho label của select. Label bắt buộc phải định dạng for = "<select_id>"
 ```
+- Set null option, mặc định là false:
+```js
+select.IsNULL = true;
+```
